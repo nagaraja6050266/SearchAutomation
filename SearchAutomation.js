@@ -1,3 +1,4 @@
+require("dotenv").config();
 const puppeteer = require("puppeteer");
 const { MongoClient } = require("mongodb");
 const reader = require("xlsx");
@@ -15,9 +16,7 @@ for (let i = 0; i < sheets.length; i++) {
 
 //SearchAutomation
 async function main() {
-    const uri =
-        "mongodb+srv://itzinr:Inr6050266@cluster.luvtjrd.mongodb.net/?retryWrites=true&w=majority";
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGODB_URI);
     try {
         await client.connect();
         console.log("Connected to MongoDB");
